@@ -25,7 +25,7 @@ public class Waypoint : MonoBehaviour
         
     }
 
-    //Creamos nuestros Gizmos para darle el pathing a nuestro juego. Añadimos ademas que podamos mover esos gizmos si necesidad de las variables XYZ.
+    //Creamos nuestros Gizmos para darle el pathing a nuestro juego.
     //Gracias al if podemos hacer que las agrupemos en conjunto y asi poder mover nuestro emptyObject desde Unity.
     private async void  OnDrawGizmos() 
     {
