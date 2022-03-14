@@ -7,6 +7,9 @@ public class Waypoint : MonoBehaviour
 
     [SerializeField]private Vector3[] points;
 
+    public Vector3[] Points => points;
+    public Vector3 CurrentPostion => _currenPosition;
+
     private Vector3 _currenPosition;
     private bool _gameStarted;
     // Start is called before the first frame update
