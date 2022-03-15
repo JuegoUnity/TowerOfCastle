@@ -19,11 +19,11 @@ public class Waypoint : MonoBehaviour
         _currenPosition = transform.position;
     }
 
-    // Update is called once per frame
-    private void Update()
+    public Vector3 GetWaypointPosition(int index)
     {
-        
+        return CurrentPostion + Points[index];
     }
+
 
     //Creamos nuestros Gizmos para darle el pathing a nuestro juego.
     //Gracias al if podemos hacer que las agrupemos en conjunto y asi poder mover nuestro emptyObject desde Unity.
