@@ -67,4 +67,10 @@ public class Enemy : MonoBehaviour
          }
 
 
+    public void ResetEnemy()
+    {
+        _currentWaypointIndex = 0;
+    }
+
+
 }

@@ -16,6 +16,7 @@ public class Spawner : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private SpawnModes spawnMode = SpawnModes.Fixed;
     [SerializeField] private int enemyCount = 10;
+    [SerializeField] private float delayBtwWaves = 1f;
     
     
     [Header("Fixed Delay")]
@@ -27,6 +28,7 @@ public class Spawner : MonoBehaviour
 
     private float _spawnTimer;
     private int _enemiesSpawned;
+    private int _enemiesRamaining;
 
     private ObjectPooler _pooler;
     private Waypoint _waypoint;
@@ -35,6 +37,7 @@ public class Spawner : MonoBehaviour
     {
         _pooler = GetComponent<ObjectPooler>();
         _waypoint = GetComponent<Waypoint>();
+        _enemiesRamaining = enemyCount;
 
     }
     // Hacemos que Spawneen enemigos desde el contador. Hasta 10 enemigos. Agregando los segundos que nosotros queramos y aleatoriamente saldran los enemigos.
@@ -57,6 +60,8 @@ public class Spawner : MonoBehaviour
         GameObject newInstance = _pooler.GetInstanceFromPool();
         Enemy enemy = newInstance.GetComponent<Enemy>();
         enemy.Waypoint = _waypoint;
+        enemy.ResetEnemy();
+
         enemy.transform.localPosition = transform.position;
         newInstance.SetActive(true);
     }
@@ -82,5 +87,31 @@ public class Spawner : MonoBehaviour
     {
         float randomTimer = Random.Range(minRandomDelay, maxRandomDelay);
         return randomTimer;
+    }
+
+    private IEnumerator NextWave()
+    {
+        yield return new WaitForSeconds(delayBtwWaves);
+        _enemiesRamaining = enemyCount;
+        _spawnTimer = 0f;
+        _enemiesSpawned = 0;
+    }
+    private void RecordEnemyReached()
+    {
+        _enemiesRamaining--;
+        if (_enemiesRamaining <=0 )
+        {
+            StartCoroutine(NextWave());
+        }
+    }
+
+    private void OnEnable() 
+    {
+        Enemy.OnEndReached += RecordEnemyReached;
+    }
+
+    private void OnDisable() 
+    {
+        Enemy.OnEndReached -= RecordEnemyReached;  
     }
 }
