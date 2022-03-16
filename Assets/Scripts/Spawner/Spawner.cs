@@ -16,7 +16,7 @@ public class Spawner : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private SpawnModes spawnMode = SpawnModes.Fixed;
     [SerializeField] private int enemyCount = 10;
-    [SerializeField] private GameObject testGO;
+    
     
     [Header("Fixed Delay")]
     [SerializeField] private float delayBtwSpawns;
@@ -29,10 +29,13 @@ public class Spawner : MonoBehaviour
     private int _enemiesSpawned;
 
     private ObjectPooler _pooler;
+    private Waypoint _waypoint;
 
     private void Start()
     {
         _pooler = GetComponent<ObjectPooler>();
+        _waypoint = GetComponent<Waypoint>();
+
     }
     // Hacemos que Spawneen enemigos desde el contador. Hasta 10 enemigos. Agregando los segundos que nosotros queramos y aleatoriamente saldran los enemigos.
     private void Update()
@@ -52,6 +55,9 @@ public class Spawner : MonoBehaviour
     private void SpawnEnemy()
     {
         GameObject newInstance = _pooler.GetInstanceFromPool();
+        Enemy enemy = newInstance.GetComponent<Enemy>();
+        enemy.Waypoint = _waypoint;
+        enemy.transform.localPosition = transform.position;
         newInstance.SetActive(true);
     }
      //Añadimos un metodo en el que podamos tener un Spawn respetando el contador hasta 10 pero eligiendo nosotros la velocidad a la que spawnearan los enemigos.
