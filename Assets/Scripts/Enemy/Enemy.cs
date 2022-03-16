@@ -5,8 +5,9 @@ using System;
 
 public class Enemy : MonoBehaviour
 {
-     public static Action OnEndReached;
+     public static Action<Enemy> OnEndReached;
      [SerializeField] private float moveSpeed = 3f;
+     public float MoveSpeed { get; set; }
 
      public Waypoint Waypoint { get; set; }
      
@@ -19,7 +20,9 @@ public class Enemy : MonoBehaviour
      private void Start() 
      {
          _currentWaypointIndex = 0;
+         MoveSpeed = moveSpeed;
          _enemyHealth = GetComponent<EnemyHealth>();
+         
      }
 
      private void Update() 
@@ -34,7 +37,17 @@ public class Enemy : MonoBehaviour
      private void Move()
      {
         
-        transform.position = Vector3.MoveTowards (transform.position, CurrentPointPosition, moveSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards (transform.position, CurrentPointPosition, MoveSpeed * Time.deltaTime);
+     }
+
+     public void StopMovement()
+     {
+        MoveSpeed = 0f;
+     }
+
+     public void ResumeMovement()
+     {
+         MoveSpeed = moveSpeed;
      }
 
      private bool CurrentPointPositionReached()
@@ -64,7 +77,7 @@ public class Enemy : MonoBehaviour
      }
       private void EndPointReached()
          {
-             OnEndReached?.Invoke();
+             OnEndReached?.Invoke(this);
              _enemyHealth.ResetHealth();
              ObjectPooler.ReturnToPool(gameObject);
          }
