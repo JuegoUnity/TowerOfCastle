@@ -96,7 +96,7 @@ public class Spawner : MonoBehaviour
         _spawnTimer = 0f;
         _enemiesSpawned = 0;
     }
-    private void RecordEnemyReached()
+    private void RecordEnemy()
     {
         _enemiesRamaining--;
         if (_enemiesRamaining <=0 )
@@ -107,11 +107,15 @@ public class Spawner : MonoBehaviour
 
     private void OnEnable() 
     {
-        Enemy.OnEndReached += RecordEnemyReached;
+        Enemy.OnEndReached += RecordEnemy;
+        EnemyHealth.OnEnemyKilled += RecordEnemy;
+
     }
 
     private void OnDisable() 
     {
-        Enemy.OnEndReached -= RecordEnemyReached;  
+        Enemy.OnEndReached -= RecordEnemy;  
+        EnemyHealth.OnEnemyKilled -= RecordEnemy;
+
     }
 }
