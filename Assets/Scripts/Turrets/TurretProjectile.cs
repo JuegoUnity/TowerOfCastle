@@ -11,7 +11,7 @@ public class TurretProjectile : MonoBehaviour
 
     protected ObjectPooler _pooler;
     protected Turret _turret;
-    private Projectile _currentProjectileLoaded;
+    protected Projectile _currentProjectileLoaded;
 
     private void Start() 
     {
