@@ -29,7 +29,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            DealDaamge(5f);
+            DealDamage(5f);
         }
 
         _healthBar.fillAmount = Mathf.Lerp(_healthBar.fillAmount, CurrentHealth / maxHealth, Time.deltaTime * 10f);
@@ -43,7 +43,7 @@ public class EnemyHealth : MonoBehaviour
         _healthBar = container.FillAmountImage;
     }
 
-    public void DealDaamge(float damageReceived)
+    public void DealDamage(float damageReceived)
     {
         CurrentHealth -= damageReceived;
         if (CurrentHealth <= 0)
