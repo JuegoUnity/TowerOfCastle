@@ -9,11 +9,14 @@ public class Turret : MonoBehaviour
    private bool _gameStarted;
    private List<Enemy> _enemies;
    public Enemy CurrentEnemyTarget { get; set; }
+   public TurretUpgrade TurretUpgrade { get; set; }
 
    private void Start() 
    {
        _gameStarted = true;
        _enemies = new List<Enemy>();
+
+       TurretUpgrade = GetComponent<TurretUpgrade>();
    }
 
    private void Update() 
