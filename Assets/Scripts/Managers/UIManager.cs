@@ -8,7 +8,7 @@ public class UIManager : Singleton<UIManager>
 {
     [Header("Panels")]
     [SerializeField] private GameObject turretShopPanel;
-    [SerializeField] private GameObject noedUIPanel;
+    [SerializeField] private GameObject nodeUIPanel;
 
     [Header("Text")]
     [SerializeField] private TextMeshProUGUI upgradeText;
@@ -29,15 +29,24 @@ public class UIManager : Singleton<UIManager>
         _currentNodeSelected.Turret.TurretUpgrade.UpgradeTurret();
         UpdateUpgradeText();
         UpdateTurretLevel();
+        UpdateSellValue();
+    }
+
+    public void SellTurret()
+    {
+        _currentNodeSelected.SellTurret();
+        _currentNodeSelected = null;
+        nodeUIPanel.SetActive(false);
     }
     private void ShowNodeUI()
     {
-        noedUIPanel.SetActive(true);
+        nodeUIPanel.SetActive(true);
         UpdateUpgradeText();
         UpdateTurretLevel();
+        UpdateSellValue();
 
     }
-
+    
     private void UpdateUpgradeText()
     {
         upgradeText.text = _currentNodeSelected.Turret.TurretUpgrade.UpgradeCost.ToString();
@@ -48,6 +57,11 @@ public class UIManager : Singleton<UIManager>
         turretLevelText.text = $"Level {_currentNodeSelected.Turret.TurretUpgrade.Level}";
     }
 
+    private void UpdateSellValue()
+    {
+        int sellAmount = _currentNodeSelected.Turret.TurretUpgrade.GetSellValue();
+        sellText.text = sellAmount.ToString();
+    }
     private void NodeSelected(Node nodeSelected)
     {
         _currentNodeSelected = nodeSelected;

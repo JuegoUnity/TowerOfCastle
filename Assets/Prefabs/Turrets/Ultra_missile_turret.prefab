@@ -69,7 +69,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2053850675
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: d8e03d5e7f77f40449e0ebe11a1f96fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -213,7 +213,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2053850675
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 29684de641d92a14f90bc24b13582f15, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -337,3 +337,4 @@ MonoBehaviour:
   upgradeCostIncremental: 0
   damageIncremental: 0
   delayReduce: 0
+  sellPert: 0.5
