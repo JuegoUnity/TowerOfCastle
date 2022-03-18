@@ -12,6 +12,8 @@ public enum SpawnModes
 
 public class Spawner : MonoBehaviour
 {
+
+    public static Action OnWaveCompleted;
     //Creamos las variables para hacer los diferentes tipos random spawn de los enemigos.
     [Header("Settings")]
     [SerializeField] private SpawnModes spawnMode = SpawnModes.Fixed;
@@ -101,6 +103,7 @@ public class Spawner : MonoBehaviour
         _enemiesRamaining--;
         if (_enemiesRamaining <=0 )
         {
+            OnWaveCompleted?.Invoke();
             StartCoroutine(NextWave());
         }
     }
