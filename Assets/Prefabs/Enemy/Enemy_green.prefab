@@ -138,7 +138,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -47977785
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5c5d980954b19a4469a23254f0326871, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c34e4fe2da17b4993b8cc2a50ba250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 4
 --- !u!114 &-6492663769007731042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,8 +244,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBarPrefab: {fileID: 1485062232122457027, guid: aea92adbe97603449b657ab068547d0a, type: 3}
   barPosition: {fileID: 2968650349459451482}
-  initialHealth: 10
-  maxHealth: 10
+  initialHealth: 30
+  maxHealth: 30
 --- !u!114 &-1572607839436859450
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -104,7 +104,7 @@ public class Spawner : MonoBehaviour
         int currentWave = LevelManager.Instance.CurrentWave;
         if (currentWave <= 10) // 1-10
         {
-            return enemyWave10Pooler;
+            return enemyWave10Pooler;  
         }
 
         if (currentWave > 10 && currentWave <= 20)// 11-20
@@ -134,7 +134,7 @@ public class Spawner : MonoBehaviour
     private IEnumerator NextWave()
     {
         yield return new WaitForSeconds(delayBtwWaves);
-        _enemiesRamaining = enemyCount;
+        _enemiesRamaining = enemyCount++;
         _spawnTimer = 0f;
         _enemiesSpawned = 0;
     }
