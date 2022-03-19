@@ -21,8 +21,13 @@ public class LevelManager : Singleton<LevelManager>
         if (TotalLives <= 0)
         {
             TotalLives = 0;
-            //Game Over
+            GameOver();
         }
+    }
+
+    private void GameOver()
+    {
+        UIManager.Instance.ShowGameOverPanel();
     }
 
     private void WaveCompleted()
