@@ -11,6 +11,8 @@ public class Achievement : ScriptableObject
     public int GoldReward;
     public Sprite Sprite;
 
+    public bool IsUnlocked { get; set; }
+
     private int CurrentProgress;
 
     public void AddProgress(int amount)
@@ -30,6 +32,7 @@ public class Achievement : ScriptableObject
 
     private void UnlockAchievement()
     {
+        IsUnlocked = true;
         AchievementManager.OnAchievementUnLocked?.Invoke(this);
     }
 
@@ -38,8 +41,14 @@ public class Achievement : ScriptableObject
         return $"{CurrentProgress}/{ProgressToUnlock}";
     }
 
+    public string GetProgressCompleted()
+    {
+        return $"{ProgressToUnlock}/{ProgressToUnlock}";
+    }
+
     private void OnEnable() 
     {
+        IsUnlocked = false;
         CurrentProgress = 0;
     }
 }
