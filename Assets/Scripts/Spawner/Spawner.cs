@@ -28,16 +28,24 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float minRandomDelay;
     [SerializeField] private float maxRandomDelay;
 
+    [Header ("Poolers")]
+    [SerializeField] private ObjectPooler enemyWave10Pooler;
+    [SerializeField] private ObjectPooler enemyWave11To20Pooler;
+    [SerializeField] private ObjectPooler enemyWave21To30Pooler;
+    [SerializeField] private ObjectPooler enemyWave31To40Pooler;
+    [SerializeField] private ObjectPooler enemyWave41To50Pooler;
+
+
     private float _spawnTimer;
     private int _enemiesSpawned;
     private int _enemiesRamaining;
 
-    private ObjectPooler _pooler;
+    
     private Waypoint _waypoint;
 
     private void Start()
     {
-        _pooler = GetComponent<ObjectPooler>();
+        
         _waypoint = GetComponent<Waypoint>();
         _enemiesRamaining = enemyCount;
 
@@ -59,7 +67,7 @@ public class Spawner : MonoBehaviour
     //Creamos el metodo SpawnEnemy para poder instanciar nuestro testGO.
     private void SpawnEnemy()
     {
-        GameObject newInstance = _pooler.GetInstanceFromPool();
+        GameObject newInstance = GetPooler().GetInstanceFromPool();
         Enemy enemy = newInstance.GetComponent<Enemy>();
         enemy.Waypoint = _waypoint;
         enemy.ResetEnemy();
@@ -90,6 +98,38 @@ public class Spawner : MonoBehaviour
         float randomTimer = Random.Range(minRandomDelay, maxRandomDelay);
         return randomTimer;
     }
+
+    private ObjectPooler GetPooler()
+    {
+        int currentWave = LevelManager.Instance.CurrentWave;
+        if (currentWave <= 10) // 1-10
+        {
+            return enemyWave10Pooler;
+        }
+
+        if (currentWave > 10 && currentWave <= 20)// 11-20
+        {
+            return enemyWave11To20Pooler;
+        }
+
+        if (currentWave > 20 && currentWave <= 30)// 21-30
+        {
+            return enemyWave21To30Pooler;
+        }
+
+        if (currentWave > 30 && currentWave <= 40)// 31-40
+        {
+            return enemyWave31To40Pooler;
+        }
+
+        if (currentWave > 40 && currentWave <= 50)// 41-50
+        {
+            return enemyWave41To50Pooler;
+        }
+
+        return null;
+    }
+    
 
     private IEnumerator NextWave()
     {
