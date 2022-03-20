@@ -34,11 +34,22 @@ public class Spawner : MonoBehaviour
     [SerializeField] private ObjectPooler enemyWave21To30Pooler;
     [SerializeField] private ObjectPooler enemyWave31To40Pooler;
     [SerializeField] private ObjectPooler enemyWave41To50Pooler;
+    [SerializeField] private ObjectPooler enemyWave51To60Pooler;
+    [SerializeField] private ObjectPooler enemyWave61To70Pooler;
+    [SerializeField] private ObjectPooler enemyWave71To80Pooler;
+    [SerializeField] private ObjectPooler enemyWave81To90Pooler;
+    [SerializeField] private ObjectPooler enemyWave91To100Pooler;
+
+
+
 
 
     private float _spawnTimer;
     private int _enemiesSpawned;
     private int _enemiesRamaining;
+
+   
+    
 
     
     private Waypoint _waypoint;
@@ -64,6 +75,13 @@ public class Spawner : MonoBehaviour
             }
         }
     }
+
+    
+
+
+   
+
+
     //Creamos el metodo SpawnEnemy para poder instanciar nuestro testGO.
     private void SpawnEnemy()
     {
@@ -127,14 +145,43 @@ public class Spawner : MonoBehaviour
             return enemyWave41To50Pooler;
         }
 
+        if (currentWave >  51 && currentWave <= 60)// 51-60   
+        {
+            return enemyWave51To60Pooler;
+        }
+
+        if (currentWave > 61 && currentWave <= 70)// 61-70
+        {
+            return enemyWave61To70Pooler;
+        }
+
+        if (currentWave > 71 && currentWave <= 80)// 71-80
+        {
+            return enemyWave71To80Pooler;
+        }
+
+        if (currentWave > 81 && currentWave <= 90)// 81-90
+        {
+            return enemyWave81To90Pooler;
+        }
+
+        if (currentWave > 91 && currentWave <= 100)// 91-100
+        {
+            return enemyWave91To100Pooler;
+        }
+
         return null;
     }
+
+    
     
 
     private IEnumerator NextWave()
     {
         yield return new WaitForSeconds(delayBtwWaves);
-        _enemiesRamaining = enemyCount++;
+        int currentWave = LevelManager.Instance.CurrentWave;
+        enemyCount = currentWave+1;
+        _enemiesRamaining = enemyCount;
         _spawnTimer = 0f;
         _enemiesSpawned = 0;
     }
@@ -143,8 +190,9 @@ public class Spawner : MonoBehaviour
         _enemiesRamaining--;
         if (_enemiesRamaining <=0 )
         {
-            OnWaveCompleted?.Invoke();
-            StartCoroutine(NextWave());
+            
+                OnWaveCompleted?.Invoke();
+                StartCoroutine(NextWave());
         }
     }
 
