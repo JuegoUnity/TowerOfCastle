@@ -12,7 +12,10 @@ public class EnemyFX : MonoBehaviour
     {
         _enemy = GetComponent<Enemy>();
     }
-    
+
+/// <summary>
+/// Cuando golpeamos a un enemigo hacemos que podamos ver el daño que le inflinjimos que hemos añadido a un spawn.
+/// </summary>
     private void EnemyHit (Enemy enemy, float damage)
     {
         if (_enemy == enemy)

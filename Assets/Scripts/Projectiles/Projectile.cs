@@ -22,6 +22,9 @@ public class Projectile : MonoBehaviour
             RotatePorjectile();
         }
     }
+/// <summary>
+/// Funcion que añade movilidad a nuestro proyectil
+/// </summary>
     protected virtual void MoveProjectile()
     {
         transform.position = Vector2.MoveTowards(transform.position, _enemyTarget.transform.position, moveSpeed * Time.deltaTime);
@@ -34,6 +37,10 @@ public class Projectile : MonoBehaviour
             ObjectPooler.ReturnToPool(gameObject);
         }
     }
+
+/// <summary>
+/// Funcion en la que el proyectil sigue al enemigo
+/// </summary>
 
     public void RotatePorjectile()
     {

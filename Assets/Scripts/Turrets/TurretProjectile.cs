@@ -17,6 +17,9 @@ public class TurretProjectile : MonoBehaviour
     protected Turret _turret;
     protected Projectile _currentProjectileLoaded;
 
+/// <summary>
+/// Inicializamos nuestros objetos y funciones
+/// </summary>
     private void Start() 
     {
         _turret = GetComponent<Turret>();
@@ -25,7 +28,9 @@ public class TurretProjectile : MonoBehaviour
         DelayPerShot = delayBtwAttacks;
         LoadProjectile();
     }
-
+/// <summary>
+/// Actualizamos los proyectiles en nuestras torretas y se los agregamos para poder atacar a nuestros enemigos, añadiendoles su velocidad de ataque y delay por cada disparo
+/// </summary>
     protected virtual void Update() 
     {
         
@@ -43,10 +48,11 @@ public class TurretProjectile : MonoBehaviour
             }
 
             _nextAttackTime = Time.time + DelayPerShot;
-        }
-
-        
+        }  
     }
+/// <summary>
+/// Cargamos los proyectiles de nuestra instancia de nuestro pooler
+/// </summary>
     protected virtual void LoadProjectile()
     {
         GameObject newInstance = _pooler.GetInstanceFromPool();

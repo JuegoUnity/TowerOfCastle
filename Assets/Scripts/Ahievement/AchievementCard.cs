@@ -15,6 +15,9 @@ public class AchievementCard : MonoBehaviour
 
     public Achievement AchievementLoaded { get; set; }
 
+/// <summary>
+/// Metodo que nos mostrara todos los apartados de nuestro panel de logros
+/// </summary>
     public void SetupAchievement(Achievement achievement)
     {
         AchievementLoaded = achievement;
@@ -23,7 +26,9 @@ public class AchievementCard : MonoBehaviour
         progress.text = achievement.GetProgress();
         reward.text = achievement.GoldReward.ToString();
     }
-
+/// <summary>
+/// Funcion que nos permite obtener la recompensa de nuestros logros y añadir las coins.
+/// </summary>
     public void GetReward()
     {
         if (AchievementLoaded.IsUnlocked)
@@ -32,7 +37,9 @@ public class AchievementCard : MonoBehaviour
             rewardButton.gameObject.SetActive(false);
         }
     }
-
+/// <summary>
+/// Funcion que nos permite registrar y cargar cuantos enemigos muertos o oleadas tenemos y verlos en la pantalla de logros
+/// </summary>
     private void LoadAchievementsProgress()
     {
         if (AchievementLoaded.IsUnlocked)
@@ -44,7 +51,9 @@ public class AchievementCard : MonoBehaviour
             progress.text = AchievementLoaded.GetProgress();
         }
     }
-
+/// <summary>
+/// Funcion que nos permite poder ver si el boton esta listo para poder activarse
+/// </summary>
     private void CheckRewardButtonStatus()
     {
         if (AchievementLoaded.IsUnlocked)
@@ -56,7 +65,9 @@ public class AchievementCard : MonoBehaviour
             rewardButton.interactable = false;
         }
     }
-
+/// <summary>
+/// Actulaiza el progreso de los logros
+/// </summary>
     private void UpdateProgress(Achievement achievementWithProgress)
     {
         if (AchievementLoaded == achievementWithProgress)
@@ -64,7 +75,9 @@ public class AchievementCard : MonoBehaviour
             LoadAchievementsProgress();
         }
     } 
-
+/// <summary>
+/// Funcion que nos permite recoger las monedas
+/// </summary>
     private void AchievementUnlocked(Achievement achievement)
     {
         if (AchievementLoaded == achievement)

@@ -40,18 +40,10 @@ public class Spawner : MonoBehaviour
     [SerializeField] private ObjectPooler enemyWave81To90Pooler;
     [SerializeField] private ObjectPooler enemyWave91To100Pooler;
 
-
-
-
-
     private float _spawnTimer;
     private int _enemiesSpawned;
     private int _enemiesRamaining;
 
-   
-    
-
-    
     private Waypoint _waypoint;
 
     private void Start()
@@ -75,12 +67,6 @@ public class Spawner : MonoBehaviour
             }
         }
     }
-
-    
-
-
-   
-
 
     //Creamos el metodo SpawnEnemy para poder instanciar nuestro testGO.
     private void SpawnEnemy()
@@ -116,7 +102,9 @@ public class Spawner : MonoBehaviour
         float randomTimer = Random.Range(minRandomDelay, maxRandomDelay);
         return randomTimer;
     }
-
+/// <summary>
+/// Añadmimos mas oleadas para despues instanciar nuestros prefabs
+/// </summary>
     private ObjectPooler GetPooler()
     {
         int currentWave = LevelManager.Instance.CurrentWave;
@@ -174,7 +162,9 @@ public class Spawner : MonoBehaviour
     }
 
     
-    
+/// <summary>
+/// Hacemos que obtengamos una nueva oleada añadiendo 1 al contador de ella asi generando 1 enemigo mas cada oleada
+/// </summary>
 
     private IEnumerator NextWave()
     {
@@ -185,6 +175,9 @@ public class Spawner : MonoBehaviour
         _spawnTimer = 0f;
         _enemiesSpawned = 0;
     }
+/// <summary>
+/// Comprobamos si los no hay enemigos asi pudiendo pasar la oleada y añadimos una nueva
+/// </summary>
     private void RecordEnemy(Enemy enemy)
     {
         _enemiesRamaining--;

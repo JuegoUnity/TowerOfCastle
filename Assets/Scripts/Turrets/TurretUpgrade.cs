@@ -33,7 +33,9 @@ public class TurretUpgrade : MonoBehaviour
     }
 
 
-
+/// <summary>
+/// Funcion que hace aumenta el daño y disminuye el delay de los disparos cuando mejoramos nuestras torretas
+/// </summary>
     public void UpgradeTurret()
     {
         if (CurrencySystem.Instance.TotalCoins >= UpgradeCost)
@@ -44,11 +46,19 @@ public class TurretUpgrade : MonoBehaviour
         }  
     }
 
+/// <summary>
+/// Funcion que nos devuelve el valor al que podemos vender la torreta
+/// </summary>
+
     public int GetSellValue()
     {
         int sellValue = Mathf.RoundToInt(UpgradeCost * SellPerc);
         return sellValue;
     }
+
+/// <summary>
+/// funcion que nos permite upgradear la torreta por el coste de las monedas
+/// </summary>
 
     private void UpdateUpgrade()
     {

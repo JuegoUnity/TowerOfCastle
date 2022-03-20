@@ -12,7 +12,7 @@ public class Waypoint : MonoBehaviour
 
     private Vector3 _currenPosition;
     private bool _gameStarted;
-    // Start is called before the first frame update
+    
     private void Start()
     {
         _gameStarted = true;

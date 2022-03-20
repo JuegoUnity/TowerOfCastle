@@ -5,6 +5,10 @@ using UnityEngine;
 // public class DamageTextManager : Singleton<DamageTextManager>
 public class Singleton<T> : MonoBehaviour where T : Component
 {
+/// <summary>
+/// Creamos una clase Singleton que nos permita obtener herencia en nuestros scripts 
+/// </summary>
+
     private static T instance;
     public static T Instance
     {

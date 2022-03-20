@@ -19,18 +19,26 @@ public class EnemyHealth : MonoBehaviour
     private Image _healthBar;
     private Enemy _enemy;
 
+/// <summary>
+/// Inicializamos en la funcion Start nuestras funciones.
+/// </summary>
     void Start()
     {
         CreateHealBar();
         CurrentHealth = initialHealth;
         _enemy = GetComponent<Enemy>();
     }
+
+/// <summary>
+/// Actualizamos la cantidad de vida que les queda a los enemigos del daño respectivo que les hace nuestras torretas.
+/// </summary>
     private void Update() 
     {
-        
-
         _healthBar.fillAmount = Mathf.Lerp(_healthBar.fillAmount, CurrentHealth / maxHealth, Time.deltaTime * 10f);
     }
+/// <summary>
+/// Creamos una funcion para poner una barra de vida en los enemigos
+/// </summary>
     private void CreateHealBar()
     {
         GameObject newBar = Instantiate(healthBarPrefab, barPosition.position, Quaternion.identity);
@@ -39,7 +47,9 @@ public class EnemyHealth : MonoBehaviour
         EnemyHealthContainer container = newBar.GetComponent<EnemyHealthContainer>();
         _healthBar = container.FillAmountImage;
     }
-
+/// <summary>
+/// Funcion que nos devuelve el daño mientras el enemigo tenga mas vida que 0. En el momento que el enemigo llega a 0 invocamos a la funcion Die.
+/// </summary>
     public void DealDamage(float damageReceived)
     {
         CurrentHealth -= damageReceived;
@@ -53,12 +63,17 @@ public class EnemyHealth : MonoBehaviour
             OnEnemyHit?.Invoke(_enemy);
         }
     }
-
+/// <summary>
+/// Restablecemos la vida de los enemigos
+/// </summary>
     public void ResetHealth()
     {
         CurrentHealth = initialHealth;
         _healthBar.fillAmount = 1f;
     }
+/// <summary>
+/// Usamos la funcion Die para ademas de eliminar a los enemigos, cuando llegamos al numero x de kills poder recoger un logro.
+/// </summary>
     private void Die()
     {
         AchievementManager.Instance.AddProgress("Kill20", 1);

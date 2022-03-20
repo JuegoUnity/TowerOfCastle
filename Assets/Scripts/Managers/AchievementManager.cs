@@ -16,6 +16,9 @@ public class AchievementManager : Singleton<AchievementManager>
   {
       LoadAchievements();
   }
+/// <summary>
+/// Cargar logros
+/// </summary>
 
   private void LoadAchievements()
   {
@@ -25,7 +28,9 @@ public class AchievementManager : Singleton<AchievementManager>
           card.SetupAchievement(achievements[i]);
       }
   }
-
+/// <summary>
+/// Añade el progrreso de los logros a nuestro panel
+/// </summary>
   public void AddProgress(string achievementID, int amount)
   {
       Achievement achievementWanted = AchievementExists(achievementID);
@@ -34,7 +39,9 @@ public class AchievementManager : Singleton<AchievementManager>
             achievementWanted.AddProgress(amount);
         }
   }
-
+/// <summary>
+/// Recoge la informacion para ver que el logro esta terminado y lo manda
+/// </summary>
   private Achievement AchievementExists(string achievementID)
   {
       for (int i = 0; i < achievements.Length; i++)

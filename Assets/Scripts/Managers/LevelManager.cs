@@ -20,7 +20,9 @@ public class LevelManager : Singleton<LevelManager>
         TotalLives = lives;
         CurrentWave = 1;
     }
-
+/// <summary>
+/// Funcion que si llegamos a 0 vidas nos termina la partida
+/// </summary>
     private void ReducesLives(Enemy enemy)
     {
         TotalLives--;
@@ -30,7 +32,9 @@ public class LevelManager : Singleton<LevelManager>
             GameOver();
         }
     }
-
+/// <summary>
+/// Funcion que hace que termine la partida y ademas añadimos la oleada en la que nos hemos quedado a la base de datos
+/// </summary>
     private void GameOver()
     {
         Contador = Contador == 0?1:2;//Este contador es un seguro para que esta parte del codigo solo se ejecute una vez.
@@ -56,7 +60,9 @@ public class LevelManager : Singleton<LevelManager>
     }
 
 
-
+/// <summary>
+/// Añade una oleada cuando completamos una, ademas carga los logros del progreso de oleadas pasadas.
+/// </summary>
     private void WaveCompleted()
     {
         
@@ -76,7 +82,6 @@ public class LevelManager : Singleton<LevelManager>
     
     private void OnDisable() 
     {
-        Debug.Log("Entro aqui");
         Enemy.OnEndReached -= ReducesLives;
         Spawner.OnWaveCompleted -= WaveCompleted;
     }

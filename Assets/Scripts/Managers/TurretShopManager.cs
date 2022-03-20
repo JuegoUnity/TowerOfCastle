@@ -19,7 +19,9 @@ public class TurretShopManager : MonoBehaviour
             CreateTurretCard(turrets[i]);
         }
     }
-
+/// <summary>
+/// Creamos el panel de eleccion de las diferentes torretas.
+/// </summary>
     private void CreateTurretCard(TurretSettings turretSettings)
     {
         GameObject newInstance = Instantiate(turretCardPrefab, turretPanelContainer.position, Quaternion.identity);
@@ -29,12 +31,16 @@ public class TurretShopManager : MonoBehaviour
         TurretCard cardButton = newInstance.GetComponent<TurretCard>();
         cardButton.SetupTurretButton(turretSettings);
     }
-    
+/// <summary>
+/// Creamos la funcion para poder añadir nodes que nos serviran para añadir torretas encima
+/// </summary> 
     private void NodeSelected(Node nodeSelected)
     {
         _currentNodeSelected = nodeSelected;
     }
-    
+/// <summary>
+/// Funcion que permite añadir torres encima de los nodes
+/// </summary>
     private void PlaceTurret(TurretSettings turretLoaded)
     {
         if (_currentNodeSelected != null)
@@ -47,7 +53,9 @@ public class TurretShopManager : MonoBehaviour
             _currentNodeSelected.SetTurret(turretPlaced);
         }
     }
-
+/// <summary>
+/// Funcion que nos deja vender las torretas
+/// </summary>
     private void TurretSold()
     {
         _currentNodeSelected = null;

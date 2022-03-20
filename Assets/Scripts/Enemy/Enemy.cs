@@ -21,6 +21,9 @@ public class Enemy : MonoBehaviour
      private EnemyHealth _enemyHealth;
      private SpriteRenderer _spriteRenderer;
 
+/// <summary>
+/// Iniciamos nuestros objetos y les añadimos sus componentes
+/// </summary>
      private void Start() 
      {
          _enemyHealth = GetComponent<EnemyHealth>();
@@ -32,6 +35,9 @@ public class Enemy : MonoBehaviour
         _lastPointPosition = transform.position;
      }
 
+/// <summary>
+/// Actualizamos el movimiento y rotacion de los enemigos. Asi pudiendo hacer que se muevan por nuestros puntos de referencias del camino.
+/// </summary>
      private void Update() 
      {
          Move();
@@ -42,23 +48,31 @@ public class Enemy : MonoBehaviour
              UpdateCurrentPointIndex();
          }
      }
-
+/// <summary>
+/// Creo la funcion para mover al enemigo
+/// </summary>
      private void Move()
      {
         
         transform.position = Vector3.MoveTowards (transform.position, CurrentPointPosition, MoveSpeed * Time.deltaTime);
      }
-
+/// <summary>
+/// Funcion para que el enemigo se pare
+/// </summary>
      public void StopMovement()
      {
         MoveSpeed = 0f;
      }
-
+/// <summary>
+/// Funcion para reanudar el movimiento del enemigo
+/// </summary>
      public void ResumeMovement()
      {
          MoveSpeed = moveSpeed;
      }
-
+/// <summary>
+/// Funcion que se usa para poder hacer que los enemigos roten(solo a donde miran)
+/// </summary>
      private void Rotate()
      {
          if (CurrentPointPosition.x > _lastPointPosition.x)
@@ -71,6 +85,9 @@ public class Enemy : MonoBehaviour
          }
      }
 
+/// <summary>
+/// Funcion para actualizar la posicion que llega el enemigo
+/// </summary>
      private bool CurrentPointPositionReached()
      {
          float distanceToNextPointPosition = (transform.position - CurrentPointPosition).magnitude;
@@ -82,7 +99,9 @@ public class Enemy : MonoBehaviour
 
          return false;
      }
-
+/// <summary>
+/// Actualizamos el punto que llega el enemigo
+/// </summary>
      private void UpdateCurrentPointIndex()
      {
          int lastWaypointIndex = Waypoint.Points.Length - 1;
@@ -94,9 +113,10 @@ public class Enemy : MonoBehaviour
          {
             EndPointReached();
          }
-
-        
      }
+/// <summary>
+/// Cuando el enemigo llega el punto final hacemos que vuelva a su objectpooler y retorne su vida para poder ser usado de nuevo
+/// </summary>
       private void EndPointReached()
          {
              OnEndReached?.Invoke(this);
@@ -104,7 +124,9 @@ public class Enemy : MonoBehaviour
              ObjectPooler.ReturnToPool(gameObject);
          }
 
-
+/// <summary>
+/// Volvemos a cargar al enemigo en el punto principal del mapa
+/// </summary>
     public void ResetEnemy()
     {
         _currentWaypointIndex = 0;

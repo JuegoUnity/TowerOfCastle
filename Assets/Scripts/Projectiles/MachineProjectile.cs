@@ -12,13 +12,17 @@ public class MachineProjectile : Projectile
     {
         MoveProjectile();
     }
-
+/// <summary>
+/// Añadimos velocidad al poryectil de nuestras torretas
+/// </summary>
     protected override void MoveProjectile()
     {
         Vector2 movement = Direction.normalized * moveSpeed * Time.deltaTime;
         transform.Translate(movement);
     }
-
+/// <summary>
+/// Creamos una funcion que cuando el projectil entre en contacto con el collider del enemigo reciba su daño reste vida y se devuelva al nuestro object pool
+/// </summary>
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))

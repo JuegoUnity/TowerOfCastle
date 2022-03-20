@@ -6,6 +6,9 @@ public class MachineTurretProjectile : TurretProjectile
 {
     [SerializeField] private bool isDualMachine;
     [SerializeField] private float spreadRange;
+/// <summary>
+/// Actualizamos el tiempo para volver a lanzar otro projectil a nuestros enemigos
+/// </summary>
     protected override void Update()
     {
         if (Time.time > _nextAttackTime)
@@ -24,7 +27,9 @@ public class MachineTurretProjectile : TurretProjectile
     {
         
     }
-
+/// <summary>
+/// Hacemos que nuestra torreta pueda disparar cargando los disparos en el object pooler y comprobamos si ademas es dualmachine si es asi le añadimos nuevos campos y valores para esta nueva.
+/// </summary>
     private void FireProjectile(Vector3 direction)
     {
         GameObject instance = _pooler.GetInstanceFromPool();

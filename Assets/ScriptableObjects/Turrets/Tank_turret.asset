@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Tank_turret
   m_EditorClassIdentifier: 
   TurretPrefab: {fileID: 5366327188895477774, guid: dafe816083ab5de45ad73926f26d145d, type: 3}
-  TurretShopCost: 10
+  TurretShopCost: 15
   TurretShopSprite: {fileID: 21300000, guid: a17f664ca16083741815ca31f6223ba6, type: 3}
